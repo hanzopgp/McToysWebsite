@@ -1,0 +1,165 @@
+/*==================================*/
+/*==========JOUET DETAILS===========*/
+/*==================================*/
+
+.jouetCard{
+    width: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    margin-bottom: 3vh;
+}
+
+.jouetComment{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+    width: 60vw;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.jouetComment form{
+    padding-bottom: 10px;
+}
+
+.jouetComment form .form-item textarea{
+    width: 80%;
+    border: 2px solid #333;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.jouetComment form button{
+    padding: 7px 24px;
+    background-image: linear-gradient(-45deg, #002b80, #30aed4, #002b80);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1em;
+    transition: all ease 1s;
+    background-size: 300% 300%;
+    background-position: 0 0;
+}
+
+.jouetComment form button:hover{
+    cursor: pointer;
+    background-position: 100% 50%;
+}
+
+.card-image{
+    flex-basis: 50%;
+    box-shadow: 3px 0 5px -2px #888;
+}
+
+.card-desc{
+    flex-basis: 50%;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+.card-content{
+    padding: 2vw;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.jouetImage{
+    max-width: 30vw;
+    max-height: 40vh;
+}
+
+.card-comment{
+    background-color: #F0F0F0;
+    margin: 2vh 2vw;
+    border-radius: 5px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.comments h3{
+    margin-top: 2vh;
+    margin-left: 2vw;
+    text-align: left;
+}
+
+.card-comment .comment-title{
+    margin-left: 1vw;
+    padding-top: 10px;
+    margin-bottom: 1vh;
+}
+
+.card-comment .comment-content{
+    margin-left: 1vw;
+}
+
+/*==================================*/
+/*===========LISTE JOUETS===========*/
+/*==================================*/
+
+.listeJouets{
+    list-style-type: none;
+    width: 60vw;
+    background-color: #FFFFFF;
+    padding: 2vw 2vh;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.jouet-item{
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    margin-top: 3vh;
+    display: flex;
+}
+
+.jouet-item:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    transition: 0.2s ease-in-out;
+}
+
+.jouet-image img{
+    width: 15vw;
+    max-height: 15vh;
+    border-radius: 5px;
+}
+
+.jouet-image{
+    flex-basis: 20%;
+    padding: 10px;
+}
+
+.jouet-content{
+    flex-basis: 60%;
+    padding: 10px;
+}
+
+.jouet-actions{
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.jouet-button{
+    padding: 10px;
+    width: 5vw;
+    margin-bottom: 5px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-image: linear-gradient(-45deg, #002b80, #30aed4, #002b80);
+    background-size: 300% 300%;
+    transition: all ease 0.5s;
+}
+
+.jouet-button:hover{
+    background-position: 100% 50%;
+}
