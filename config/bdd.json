@@ -1,8 +1,8 @@
 {
     "host": "localhost",
     "port": 3306,
-    "dbname": "mctoysbdd",
-    "username": "root",
-    "password": ""
+    "dbname": "cc",
+    "username": "phpmyadmin",
+    "password": "dylan"
 
 }

@@ -41,9 +41,9 @@ class CommentaireStorage extends MainStorage implements StorageInterface{
             $stmt->bindParam(3, $auteur);
             $stmt->bindParam(4, $jouet);
             $message = $commentaire->getMessage();
+            $date = $commentaire->getDate();
             $auteur = $commentaire->getAuteur()->getId();
             $jouet = $commentaire->getJouet();
-            $date = $commentaire->getDate();
             $stmt->execute();
         }
     }
@@ -62,8 +62,9 @@ class CommentaireStorage extends MainStorage implements StorageInterface{
         $stmt->execute();
         $answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $commentaire = array();
+        $userStorage = new UserStorage();
         foreach($answer as $result){
-            array_push($commentaire, new Commentaire($result["id"], $result["message"], $result["date"], $jouet->getUser(), $result["jouet"]));
+            array_push($commentaire, new Commentaire($result["id"], $result["message"], $result["date"], $userStorage->getById(intval($result["auteur"])), $result["jouet"]));
         }
         return $commentaire;
     }

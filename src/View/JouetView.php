@@ -14,7 +14,9 @@ class JouetView extends View{
     }
 
 
-
+    /**
+     * Affiche la page d'ajout d'un jouet
+     */
     public function showNouveauPage(JouetBuilder $builder = null){
         //Si on a un builder en argument, on affiche la page avec les formulaires rempli sinon elles sont vides
         if($builder != null){
@@ -27,7 +29,9 @@ class JouetView extends View{
     }
 
 
-    /********** Voir détail d'un jouet *********/
+    /**
+     * Voir détail d'un jouet
+     */
     public function showDetailPage(Jouet $jouet, array $commentaire=null){
         if($commentaire == null){
             $this->content = $this->makeJouetDetailPage($jouet);
@@ -37,7 +41,9 @@ class JouetView extends View{
         $this->render("Detail du jouet");
     }
 
-     /********** Voir la liste de jouet *********/
+     /**
+      * Voir la liste de jouet
+      */
      public function showListePage(array $jouet, string $title = null){
         if($title != null){
             $this->content = $this->makeJouetListePage($jouet, $title);
@@ -47,6 +53,9 @@ class JouetView extends View{
         $this->render("Liste de jouets");
     }
 
+    /**
+     * Modifier un jouet
+     */
     public function showModifierPage(Jouet $jouet, JouetBuilder $builder = null){
         if($builder != null){
             $this->content = $this->makeJouetModifierPage($jouet, $builder);
@@ -55,29 +64,6 @@ class JouetView extends View{
             $this->content = $this->makeJouetModifierPage($jouet);
             $this->render("Modification d'Objet");
         }
-    } 
-
-    public function showCommentPage(Jouet $jouet){
-        if($builder != null){
-            $this->content = $this->makeJouetCommentPage($jouet, $builder);
-            $this->render("Modification d'Objet");
-        }else{
-            $this->content = $this->makeJouetCommentPage($jouet);
-            $this->render("Modification d'Objet");
-        }
-    } 
-
-    public function showSearchBarPage(array $jouet){ 
-        $this->content = $this->makeSearchBarPage();
-        $this->content .= $this->makeJouetListePage($jouet);
-        $this->render("Recherche de jouets");
-    }
-
-    public function makeSearchBarPage(){
-        return "<form action='recherche' method='POST'>
-                    <input type='text' name='recherche' value='recherche' placeholder='Trouvez un jouet'/>
-                    <button type='submit'> Rechercher </button>
-                </form>";  
     }
 
     /**
@@ -144,6 +130,9 @@ class JouetView extends View{
         }
     }
 
+    /**
+     * Voir la fiche d'un jouet avec la liste des commentaires associés
+     */
     public function makeJouetDetailPage(Jouet $jouet, array $commentaires = null){
         $content = '<div class="jouetDetail">'.
                         '<div class="jouetCard">'.
@@ -182,29 +171,13 @@ class JouetView extends View{
         }else{
             $content.= "<br>Aucun commentaire n'a été enregistré par nos membres sur ce jouet...";
         }
-        $content.=      '</div>'.
-                    '</div>'.
-                '</div>';
+        $content.= '</div></div></div>';
         return $content;
     }
 
-    public function makeJouetCommentForm(Jouet $jouet){
-        $content =
-            '<form action="'.$jouet->getId().'" method="POST">'.
-                '<div class="form-item">'.
-                    '<label for="commentaire">Votre commentaire</label>'.
-                    '<textarea name="commentaire" rows="5" placeholder="Ajouter un commentaire..."></textarea>'.
-                '</div>'.
-                '<input type="hidden" name="id" value="'.$jouet->getId().'"/>'.
-                '<input type="hidden" name="form" value="comment"/>'.
-                '<div class="form-item">'.
-                    '<button type="submit"> Valider </button>'.
-                '</div>'.
-            '</form>';
-        return $content;
-    }
-
-
+    /**
+     * Affiche la liste des jouets avec un titre optionnel
+     */
     public function makeJouetListePage(array $jouets, string $title = null){
         if($title != null){
             $content = '<ul class="listeJouets">
@@ -249,6 +222,9 @@ class JouetView extends View{
         return $content;
     }
 
+    /**
+     * Affiche la vue pour modifier un jouet
+     */
     public function makeJouetModifierPage(Jouet $jouet, JouetBuilder $jouetbuild = null){
         $content = "";
         if($jouetbuild != null){
@@ -316,12 +292,23 @@ class JouetView extends View{
         return $content;
     }
 
-    public function makeNotYourToyPage(){
-        $this->content = 
-            '<center><h1><i class="fas fa-ban"></i>
-            <h3>Vous pouvez seulement modifier un object si il vous appartient !</h3><center>
-        ';
-        $this->render("Erreur");
+    /**
+     * Formulaire pour commenter un jouet
+     */
+    public function makeJouetCommentForm(Jouet $jouet){
+        $content =
+            '<form action="'.$jouet->getId().'" method="POST">'.
+                '<div class="form-item">'.
+                    '<label for="commentaire">Votre commentaire</label>'.
+                    '<textarea name="commentaire" rows="5" placeholder="Ajouter un commentaire..."></textarea>'.
+                '</div>'.
+                '<input type="hidden" name="id" value="'.$jouet->getId().'"/>'.
+                '<input type="hidden" name="form" value="comment"/>'.
+                '<div class="form-item">'.
+                    '<button type="submit"> Valider </button>'.
+                '</div>'.
+            '</form>';
+        return $content;
     }
 }
 

@@ -9,6 +9,7 @@ use App\Entity\JouetBuilder;
 use App\Router;
 use App\Storage\CommentaireStorage;
 use App\Storage\JouetStorage;
+use App\Tool\Interfaces\AppInterface;
 use App\View\View;
 
 class JouetController extends MainController{
@@ -53,7 +54,7 @@ class JouetController extends MainController{
             }
             $this->view->showNouveauPage();
         }else{
-            $this->view->makeNotConnectedPage();
+            $this->view->showErrorPage(AppInterface::ERR_NOT_CONNECTED);
         }
     }
 
@@ -67,10 +68,10 @@ class JouetController extends MainController{
             if($storage->checkIfExist($id)){
                 $this->view->showDetailPage($storage->getById($id), $commentaireStorage->getAllCommentairesByJouet($id));
             }else{
-                $this->makeError404Page();
+                $this->view->showErrorPage(AppInterface::ERR_404);
             }
         }else{
-            $this->view->makeNotConnectedPage();
+            $this->view->showErrorPage(AppInterface::ERR_NOT_CONNECTED);
         }
     }
 
@@ -85,13 +86,13 @@ class JouetController extends MainController{
                  $this->view->showModifierPage($storage->getById($id));
                 }
                 else{
-                    $this->view->makeNotYourToyPage(); 
+                    $this->view->showErrorPage(AppInterface::ERR_NOT_YOUR_TOY);
                 }
             }else{
-                $this->makeError404Page();
+                $this->view->showErrorPage(AppInterface::ERR_404);
             }
         }else{
-            $this->view->makeNotConnectedPage();
+            $this->view->showErrorPage(AppInterface::ERR_NOT_CONNECTED);
         }
     }
 
@@ -125,11 +126,11 @@ class JouetController extends MainController{
                 header("Location: ../../");
             }
             else{
-                $this->view->makeNotYourToyPage(); 
+                $this->view->showErrorPage(AppInterface::ERR_NOT_YOUR_TOY);
             }
         }
         else{
-            $this->makeError404Page();
+            $this->view->showErrorPage(AppInterface::ERR_404);
         }
     }
 

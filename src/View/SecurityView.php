@@ -41,11 +41,11 @@ class SecurityView extends View{
 
 
     public function showDeconnectionPage(){
-        $this->content = '<div id="formDeconnexion">
-                            <center><h1 class="decoratedTitle">Déconnexion</h1>
-                                <h3>Voulez vous vous déconnecter ' . $_SESSION["user"]->getUsername() . ' ? </h3>';
+        $this->content = '<div id="formDeconnexion" class="card">
+                            <h1 class="decoratedTitle">Déconnexion</h1>
+                                <h3 class="decoratedMessage">Voulez vous vous déconnecter ' . $_SESSION["user"]->getUsername() . ' ? </h3>';
         $this->content .= $this->makeDeconnectionForm();
-        $this->content .= "</center></div>";
+        $this->content .= "</div>";
         $this->render("Deconnexion");
     }
 
@@ -154,7 +154,7 @@ class SecurityView extends View{
 
     public function makeDeconnectionForm(){
         return '
-            <form action="" method="post">
+            <form action="deconnexion" method="post">
                 <input type="hidden" name="form" value="deconnexion"/>
                 <button id="formButtonSubmit" type="submit"> Me déconnecter </button>
             </form>

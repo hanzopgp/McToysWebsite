@@ -21,12 +21,13 @@ class MainController{
         }
     }
 
-    public function makeError404Page(){
-        $this->view->makeError404Page();
-    }
-
-    public function makeNotGrantedPage(){
-        $this->view->makeNotGrantedPage();
+    public function makeErrorPage(string $message, string $logo=null){
+        if($logo != null){
+            $this->view->showErrorPage($message, $logo);
+        }else{
+            $this->view->showErrorPage($message);
+        }
+        
     }
 
     public function makeAboutPage(){

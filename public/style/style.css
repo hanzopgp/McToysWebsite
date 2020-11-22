@@ -125,23 +125,24 @@ body {
     transition: 0.2s ease-in-out;
 }
 
-.search-item input{
+.search-item input {
     border: none;
     background-color: transparent;
     width: 5vw;
 }
 
-.search-item button{
+.search-item button {
     border: none;
     background-color: none;
     color: #80C9E0;
     transition: 0.2s ease-in-out;
 }
 
-.search-item button:hover{
+.search-item button:hover {
     font-size: 1.3em;
     transition: 0.2s ease-in-out;
 }
+
 
 /*==================================*/
 
@@ -204,6 +205,15 @@ body {
 .decoratedTitle {
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 5%;
+    background: linear-gradient(to right, #002b80, #30aed4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.decoratedMessage {
+    text-align: center;
     background: linear-gradient(to right, #002b80, #30aed4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -309,6 +319,15 @@ body {
 .card {
     animation: slide-bottom 1.5s ease;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.errorCard {
+    width: 30vw;
+    background-color: #FFFFFF;
+    border-radius: 0.5em;
+    padding-top: 2vh;
+    padding-bottom: 5vh;
+    text-align: center;
 }
 
 @keyframes slide-bottom {

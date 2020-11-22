@@ -49,6 +49,10 @@ interface AppInterface{
     /*----ERRORS MESSAGES-----*/
     const ERR_PSW = "Le mot de passe que vous avez entré est incorrect. Veuillez réessayer...";
     const ERR_USER = "Ce compte n'existe pas. Veuillez vérifier vos identifiants et réessayer...";
-
+    const ERR_NOT_GRANTED = "Vous n'avez pas la permission d'accéder à cette page !<br>Veuillez contacter
+    votre administrateur pour plus d'informations.";
+    const ERR_NOT_CONNECTED = "Vous devez être connecté pour accéder à cette page !";
+    const ERR_404 = "Erreur 404 ! Veuillez réessayer.";
+    const ERR_NOT_YOUR_TOY = "Vous ne pouvez modifier que des objets qui vous appartiennent !";
 
 }

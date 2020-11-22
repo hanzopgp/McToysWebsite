@@ -23,20 +23,16 @@ class View{
         require_once("render.php");
     }
 
-    public function makeNotGrantedPage(){
-        $this->content = 
-            '<center><h1><i class="fas fa-ban"></i>
-            <h3>Vous n\'avez pas la permission d\'accéder à cette page !<br>Veuillez contacter
-            votre administrateur pour plus d\'informations.</h3><center>
-        ';
-        $this->render("Erreur");
-    }
-
-    public function makeNotConnectedPage(){
-        $this->content = 
-            '<center><h1><i class="fas fa-ban"></i>
-            <h3>Vous devez être connecté pour accéder à cette page !</h3><center>
-        ';
+    public function showErrorPage(string $message, string $logo=null){
+        if($logo != null){
+            $this->content =
+            '<div class="errorCard card"><h1><i class="'.$logo.'"></i>
+            <h3>'.$message.'</h3></div>';
+        }else{
+            $this->content =
+            '<div class="errorCard card"><h1><i class="fas fa-ban"></i>
+            <h3>'.$message.'</h3></div>';
+        }
         $this->render("Erreur");
     }
 
@@ -47,11 +43,6 @@ class View{
         }else{
             return;
         }
-    }
-
-    public function makeError404Page(){
-        $this->content = "<center><h1>Erreur 404 ! Veuillez réessayer. </h1></center>";
-        $this->render("Page non trouvée");
     }
 
     public function makeHomePage(){

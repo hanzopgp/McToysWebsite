@@ -34,7 +34,7 @@ class SearchController extends MainController{
             $jouetView = new JouetView($this->router);
             $jouetView->showListePage($_SESSION["feedback"], "Résultat de votre recherche :");
         }else{
-            $this->view->makeError404Page();
+            $this->view->showErrorPage(AppInterface::ERR_404);
         }
     }
 }

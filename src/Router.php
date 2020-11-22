@@ -125,7 +125,7 @@ class Router{
                     $controller = new HomeController($this);
                     $controller->makeHomePage();
                 }else{
-                   $mainController->makeNotGrantedPage(); 
+                   $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif($link[0] == "connexion" && sizeof($link) == 1){
                 //Page de connexion
@@ -133,7 +133,7 @@ class Router{
                     $controller = new SecurityController($this, new SecurityView($this));
                     $controller->makeConnectionPage();
                 }else{
-                    $mainController->makeNotGrantedPage(); 
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                  }
             }elseif($link[0] == "inscription" && sizeof($link) == 1){
                 //Page d'inscription
@@ -141,14 +141,14 @@ class Router{
                     $controller = new SecurityController($this, new SecurityView($this));
                     $controller->makeInscriptionPage();
                 }else{
-                    $mainController->makeNotGrantedPage(); 
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                  }
             }elseif($link[0] == "about" && sizeof($link) == 1){
                 //Page A propos
                 if($this->isGranted("ABOUT")){
                     $mainController->makeAboutPage();
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 2 && $link[0] == "jouet" && $link[1] == "usertoys"){
                 //Page Liste jouet
@@ -156,7 +156,7 @@ class Router{
                     $controller = new JouetController($this, new JouetView($this));
                     $controller -> makeOwnListPage();
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 2 && $link[0] == "jouet" && $link[1] == "recherche"){
                 //Page de résultat d'une recherche
@@ -164,7 +164,7 @@ class Router{
                     $controller = new SearchController($this, new View($this));
                     $controller->makeSearchResultPage();
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 2 && $link[0] == "jouet" && $link[1] == "liste"){
                 //Page Liste jouet
@@ -172,7 +172,7 @@ class Router{
                     $controller = new JouetController($this, new JouetView($this));
                     $controller -> makeListePage();
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 2 && $link[0] == "jouet" && $link[1] == "nouveau"){
                 //Page Nouveau jouet
@@ -180,7 +180,7 @@ class Router{
                     $controller = new JouetController($this, new JouetView($this));
                     $controller -> makeNouveauPage();
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 3 && $link[0] == "jouet" && $link[1] == "detail"){
                 //page détail jouet
@@ -188,7 +188,7 @@ class Router{
                     $controller = new JouetController($this, new JouetView($this));
                     $controller -> makeDetailPage($link[2]);
                 }else{
-                   $mainController->makeNotGrantedPage(); 
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }elseif(sizeof($link) == 3 && $link[0] == "jouet" && $link[1] == "modifier"){
                 //Page Modifier un jouet
@@ -196,11 +196,11 @@ class Router{
                     $controller = new JouetController($this, new JouetView($this));
                     $controller -> makeModifierPage($link[2]);
                 }else{
-                    $mainController->makeNotGrantedPage();
+                    $mainController->makeErrorPage(AppInterface::ERR_NOT_GRANTED); 
                 }
             }else{
                 // Aucune page trouvée, erreur 404
-                $mainController->makeError404Page();
+                $mainController->makeErrorPage(AppInterface::ERR_404); 
             }
         }
     }
@@ -234,9 +234,9 @@ class Router{
     public function makeReturnHomeLink(array $link){
         switch (sizeof($link)){
             case 0:
-                return "";
+                return "./";
             case 1:
-                return "";
+                return "./";
             break;
             case 2:
                 return "../";
