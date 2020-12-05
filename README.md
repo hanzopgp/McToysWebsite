@@ -34,5 +34,4 @@
 
 ## Liens utiles :
 
-- https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
-- https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
+- https://ensweb.users.info.unicaen.fr/pres/archi/
