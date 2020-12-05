@@ -6,7 +6,7 @@ RewriteEngine On
 
 # - Définition d'une variable d'environnement
 
-SetEnv BASE_PATH "/mctoys/public"
+SetEnv BASE_PATH "/projet-inf5c-2020/public"
 
 # - Permet de vérifier que si un dossier (-d) ou un fichier (-f) n'existe pas,
 # - alors on continue quand même la redirection d'URL
@@ -15,4 +15,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 
 # - Toutes les requêtes sont redirigées vers ce lien
 
-RewriteRule ^(.*)$ /mctoys/public/index.php?url=$1 [NC,L]
+RewriteRule ^(.*)$ /projet-inf5c-2020/public/index.php?url=$1 [NC,L]
