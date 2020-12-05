@@ -30,7 +30,7 @@
 >    Si malgré celà, le projet ne fonctionne pas, renseigner le chemin de redirection défini précédemment dans le fichier  src/Tool/Interfaces/AppInterface
 >    .php , à la ligne 11.  
     
->Le projet est installé ! Il suffit d\'importer la base de données et ce sera tout.   
+>**Le projet est installé ! Il suffit d\'importer la base de données et ce sera tout.**   
 
 ## Liens utiles :
 
