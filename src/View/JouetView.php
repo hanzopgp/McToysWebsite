@@ -81,15 +81,15 @@ class JouetView extends View{
             <br> <form action='nouveau' method='POST' enctype='multipart/form-data'>
                 <div class='form-item'>
                     <label for='nom'>Nom :</label>
-                    <input required type='text' id='nom' name='jouet_nom' value='".$dataForm['jouet_nom']."'>
+                    <input type='text' id='nom' name='jouet_nom' value='".$dataForm['jouet_nom']."'>
                 </div>
                  <div class='form-item'>
                     <label for='date'>Date :</label>
-                    <input required type='date' id='date' name='jouet_date' value='".$dataForm['jouet_date']."'>
+                    <input type='date' id='date' name='jouet_date' value='".$dataForm['jouet_date']."'>
                 </div>    
                 <div class='form-item'>
                     <label for='image'>Image :</label>
-                    <input type='file' id='image' name='jouet_image'>
+                    <input type='file' id='image' name='jouet_image'/>
                 </div>
                 <div class='form-item'>
                     <input type='hidden' name='form' value='ajout'/>
@@ -111,15 +111,15 @@ class JouetView extends View{
             <br> <form action='nouveau' method='POST' enctype='multipart/form-data'>
                 <div class='form-item'>
                     <label for='nom'>Nom :</label>
-                    <input required type='text' id='nom' name='jouet_nom'>
+                    <input type='text' id='nom' name='jouet_nom'/>
                 </div>
                 <div class='form-item'>
                     <label for='date'>Date :</label>
-                    <input required type='date' id='date' name='jouet_date'>
+                    <input type='date' id='date' name='jouet_date'/>
                 </div>    
                 <div class='form-item'>
                     <label for='image'>Image :</label>
-                    <input type='file' id='image' name='jouet_image'>
+                    <input type='file' id='image' name='jouet_image'/>
                 </div>
                 <div class='form-item'>
                     <input type='hidden' name='form' value='ajout'/>

@@ -113,6 +113,8 @@ class View{
                     <li>Un outil de recherche de jouets</li>
                 </ul>
             </fieldset>
+            <br>
+            <h4><a href="https://trello.com/b/CcHry6Cy/tweb-3-mini-site">Cliquez ici pour accéder au Trello de ce projet</a></h4>
 
             <br>
             <h2 class="decoratedTitle">Structure du projet : </h2>

@@ -8,7 +8,7 @@ interface AppInterface{
     /*===== ENV VARIABLES =====*/
     /*=========================*/
 
-    const PROJECT_BASE = "/projet-inf5c-2020/public";
+    const PROJECT_BASE = "/McToys/tw3--annee-2020-2021--projet--groupe_50/public";
     const DB_LINK = "../config/bdd.json";
 
 

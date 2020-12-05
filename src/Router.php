@@ -46,25 +46,26 @@ class Router{
         //du routeur
         $mainController = new MainController($this);
 
+
+        /**
+         * Quand on recoit l'URL "public/jouet/2" par exemple, on va diviser l'url dans
+         * un tableau en divisant à chaque fois qu'on rencontre un "/"
+         */
+        if(isset($_GET["url"])){
+            $link = explode("/", $_GET["url"]);
+            $this->returnHomeLink = $this->makeReturnHomeLink($link);
+            //pour éviter un bug du router, quand on envoit public/jouet/2/ on retire le dernier "/"
+            //sinon le routeur l'interprète comme un nouveau paramètre et ne renverra rien en conséquence
+            if($link[sizeof($link)-1] == ""){
+                unset($link[sizeof($link)-1]);
+            }
+        }
+
         /**
          * Détermine le type de réponse du serveur, soit GET, soit POST lorsque l'on envoie un
          * formulaire POST
          */
-        if($_SERVER['REQUEST_METHOD'] == "GET"){
-            /**
-             * Quand on recoit l'URL "public/jouet/2" par exemple, on va diviser l'url dans
-             * un tableau en divisant à chaque fois qu'on rencontre un "/"
-             */
-            if(isset($_GET["url"])){
-                $link = explode("/", $_GET["url"]);
-                $this->returnHomeLink = $this->makeReturnHomeLink($link);
-                //pour éviter un bug du router, quand on envoit public/jouet/2/ on retire le dernier "/"
-                //sinon le routeur l'interprète comme un nouveau paramètre et ne renverra rien en conséquence
-                if($link[sizeof($link)-1] == ""){
-                    unset($link[sizeof($link)-1]);
-                }
-            }
-        }else{
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
             // Si on rentre dans cette condition, cela veut dire qu'on a envoyé un formulaire en POST
             if(isset($_POST["form"])){
                 if($_POST["form"] == "connexion"){
@@ -205,6 +206,17 @@ class Router{
         }
     }
 
+    public function dd(){
+        if(isset($_GET["url"])){
+            $link = explode("/", $_GET["url"]);
+            $this->returnHomeLink = $this->makeReturnHomeLink($link);
+            //pour éviter un bug du router, quand on envoit public/jouet/2/ on retire le dernier "/"
+            //sinon le routeur l'interprète comme un nouveau paramètre et ne renverra rien en conséquence
+            if($link[sizeof($link)-1] == ""){
+                unset($link[sizeof($link)-1]);
+            }
+        }
+    }
 
     /**
      * Méthode retournant un lien d'une route

@@ -31,17 +31,20 @@ class JouetController extends MainController{
                 //Si on a du contenu dans le formulaire de date et du nom, on va créer un Jouet avec JouetBuilder
                 //Puis on récupère la table dans la bd, et enfin on ajoute le jouet dans la base en changeant 
                 //la valeur de successAdd pour pouvoir afficher un message pour confirmer l'ajout à la bd
-                if(isset($data["jouet_nom"]) && isset($data["jouet_date"])&& isset($_SESSION["user"])){
+                if(isset($data["jouet_nom"]) && isset($data["jouet_date"]) && isset($_FILES["jouet_image"])){
                     $builder = new JouetBuilder($data);
                     $storage = new JouetStorage();
                     $id = $storage->generateId("jouet")+1;
                     $image = $_FILES["jouet_image"]["tmp_name"];
-                    $name = uniqid().".".explode("/", $_FILES["jouet_image"]["type"])[1];
-                    if(!(move_uploaded_file($image, "../upload/".$name))){
-                        $image = null;
-                    }       
-                    if($builder->createJouet($id,$name) instanceof Jouet){
-                        $storage->flush($builder->createJouet($id,$name));
+                    $imageName = "";
+                    if(explode("/", $_FILES["jouet_image"]["type"])[0] != "image"){
+                        $builder->addError("Vous ne pouvez transférer que des images JPG, JPEG ou PNG ! <br>");
+                    }else{
+                        $imageName = uniqid().".".explode("/", $_FILES["jouet_image"]["type"])[1];
+                        move_uploaded_file($image, "../upload/".$imageName);
+                    }
+                    if($builder->createJouet($id, $imageName) instanceof Jouet){
+                        $storage->flush($builder->createJouet($id, $imageName));
                         $_SESSION["successAdd"] = 1;
                         header("Location: ../jouet/detail/".$id);
                     }else{

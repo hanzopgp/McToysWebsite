@@ -26,32 +26,29 @@ class UserBuilder{
 
     public function isValid(){
         $data = $this->data;
-        if(strlen($data["nom"]) > 0){
-            if(strlen($data["prenom"]) > 0){
-                if(strlen($data["identifiant"]) > 0){
-                    if(strlen($data["mdp"]) > 0){
-                        if(strlen($data["confirm_mdp"]) > 0){
-                            if($data["mdp"] == $data["confirm_mdp"]){
-                                return true;
-                            }else{
-                                $this->error .= "Les deux mots de passes ne sont pas identiques !<br>";
+        if(strlen($data["nom"]) < 2){
+            $this->addError("Le nom doit être supérieur ou égal à 2 caractères !<br>");
+            if(strlen($data["prenom"]) < 2){
+                $this->addError("Le prénom doit être supérieur ou égal à 2 caractères !<br>");
+                if(strlen($data["identifiant"]) < 2){
+                    $this->addError("L'identifiant doit être supérieur ou égal à 2 caractères !<br>");
+                    if(strlen($data["mdp"]) < 2){
+                        $this->addError("Le mot de passe doit être supérieur ou égal à 2 caractères !<br>");
+                        if(strlen($data["confirm_mdp"]) < 2){
+                            $this->addError("Le mot de passe doit être supérieur ou égal à 2 caractères !<br>");
+                            if($data["mdp"] != $data["confirm_mdp"]){
+                                $this->addError("Les deux mots de passes ne sont pas identiques !<br>");
                             }
-                        }else{
-                            $this->error.= "Le mot de passe doit être supérieur ou égal à 2 caractères !<br>";
                         }
-                    }else{
-                        $this->error.= "Le mot de passe doit être supérieur ou égal à 2 caractères !<br>";
                     }
-                }else{
-                    $this->error.= "L'identifiant doit être supérieur ou égal à 2 caractères !<br>";
                 }
-            }else{
-                $this->error.= "Le prénom doit être supérieur ou égal à 2 caractères !<br>";
             }
-        }else{
-            $this->error.= "Le nom doit être supérieur ou égal à 2 caractères !<br>";
         }
-        return false;
+        if($this->error != null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
@@ -69,5 +66,9 @@ class UserBuilder{
 
     public function setError($error){
         $this->error = $error;
+    }
+
+    public function addError(string $error){
+        $this->error .= $error;
     }
 }

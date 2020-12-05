@@ -26,7 +26,7 @@ namespace App\Entity;
         }
 
         //On crée un objet de type jouet en vérifiant si on a bien toute les valeurs.
-        public function createJouet(int $id, $image=null){
+        public function createJouet(int $id, $image){
             $data = $this->data;
             if($this->isValid()){
                 $jouet = new Jouet($id, $data["jouet_nom"], $_SESSION["user"], $data["jouet_date"], $image);
@@ -39,18 +39,20 @@ namespace App\Entity;
         //On vérifie les valeurs 
         public function isValid(){
             $data = $this -> getData();
-            $error = "";
-            $boolean = true;
-            if($data["jouet_nom"]==null){
-                $error .= "Il y a une erreur, il n'y a pas de nom. <br>";
-                $boolean = false;
+            if($data["jouet_nom"] == ""){
+                $this->addError("Vous n'avez pas précisé le nom de votre jouet.<br>");
+                if($data["jouet_date"] == ""){
+                    $this->addError("Vous n'avez pas précisé de date d'achat pour votre jouet. <br>");
+                }
             }
-            if($data["jouet_date"]==null){
-                $error .= "Il y a une erreur, il n'y a pas de date.";
-                $boolean = false;
+            if($this->getError() != null){
+                return false;
+            }else{
+                return true;
             }
+        }
 
-            $this->setError($error);
-            return $boolean;
+        public function addError(string $error){
+            $this->error.= $error;
         }
     }
