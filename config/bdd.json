@@ -1,8 +1,8 @@
 {
-    "host": "mysql.info.unicaen.fr:3306",
-    "port": 3306,
-    "dbname": "21510242_dev",
-    "username": "21510242",
-    "password": "ailini0oLaeboodu"
+    "host": "adressedel'host",
+    "port": port en int,
+    "dbname": "nomdelabdd",
+    "username": "votreusername",
+    "password": "votremdp"
 
 }
