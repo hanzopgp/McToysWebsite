@@ -2,18 +2,30 @@
 
 namespace App\Entity;
 
-class UserBuilder{
+use App\Entity\User;
+use App\Entity\MainBuilder;
 
-    private $data;
-    private $error;
+class UserBuilder extends MainBuilder{
 
+    /**
+     * Constructeur
+     *
+     * @param  mixed $data - data du builder
+     * @return void
+     */
     public function __construct(array $data = null){
         if($data != null){
-            $this->data = $data;
+            parent::__construct($data);
         }
-
     }
 
+        
+    /**
+     * On crée un objet de type jouet en vérifiant si on a bien toute les valeurs.
+     *
+     * @param  mixed $id - id de l'utilisateur à créer
+     * @return void
+     */
     public function createUser(int $id){
         if($this->isValid()){
             $data = $this->data;
@@ -24,6 +36,12 @@ class UserBuilder{
         }
     }
 
+        
+    /**
+     * on vérifie les valeurs
+     *
+     * @return void
+     */
     public function isValid(){
         $data = $this->data;
         if(strlen($data["nom"]) < 2){
@@ -49,26 +67,5 @@ class UserBuilder{
         }else{
             return true;
         }
-    }
-
-
-    public function getData(){
-        return $this->data;
-    }
-
-    public function setData($data){
-        $this->data = $data;
-    }
-
-    public function getError(){
-        return $this->error;
-    }
-
-    public function setError($error){
-        $this->error = $error;
-    }
-
-    public function addError(string $error){
-        $this->error .= $error;
     }
 }

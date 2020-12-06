@@ -9,6 +9,13 @@ use App\View\View;
 
 class JouetView extends View{
 
+        
+    /**
+     * Constructeur
+     *
+     * @param  mixed $router - routeur à utiliser pour les liens CSS et les liens vers les routes
+     * @return void
+     */
     public function __construct(Router $router){
         parent::__construct($router);
     }
@@ -281,7 +288,8 @@ class JouetView extends View{
                     <input type='hidden' name='id_jouet' value='".$jouet->getId()."'>
                 </div>
                 <br><br>
-                <input id='del' onclick='return confirm(\"Voulez vous vraiment supprimer ce jouet ?\");' type='checkbox' name='suppr'/>
+                <input id='del' onclick='return confirm(\"Voulez vous vraiment supprimer ce jouet ? Vous supprimerez
+                également ses commentaires !\");' type='checkbox' name='suppr'/>
                 <label for='del'>Supprimer ce jouet</label>
                 <div class='form-item'>
                     <input type='hidden' name='form' value='modifier'/>

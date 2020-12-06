@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
-class User{
+use App\Entity\Entity;
+
+class User implements Entity{
 
     private $id;
     private $nom;
@@ -12,6 +14,19 @@ class User{
     private $role;
     private $jouets;
 
+        
+    /**
+     * Constructeur
+     *
+     * @param  mixed $pId - id de l'utilisateur
+     * @param  mixed $pNom - nom de l'utilisateur
+     * @param  mixed $pPrenom - prénom de l'utilisateur
+     * @param  mixed $pUsername - pseudo de l'utilisateur
+     * @param  mixed $pPassword - mot de passe de l'utilisateur
+     * @param  mixed $pRole - role de l'utilisateur
+     * @param  mixed $pJouets - Collection de jouets associés à l'utilisateur
+     * @return void
+     */
     public function __construct(int $pId, string $pNom, string $pPrenom, string $pUsername, string $pPassword, int $pRole, array $pJouets){
         $this->id = $pId;
         $this->nom = $pNom;
@@ -49,7 +64,6 @@ class User{
 
     /**
      * Setter de la propriété nom
-     *
      */ 
     public function setNom($nom)
     {

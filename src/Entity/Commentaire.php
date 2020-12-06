@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Entity\User;
+use App\Entity\Entity;
 
-  class Commentaire{
+  class Commentaire implements Entity{
 
     private $id;
     private $jouet;
@@ -12,6 +13,17 @@ use App\Entity\User;
     private $message;
     private $date;
 
+        
+    /**
+     * Constructeur
+     *
+     * @param  mixed $id - id du commentaire
+     * @param  mixed $message - message contenu dans le commentaire
+     * @param  mixed $date - date du commentaire
+     * @param  mixed $auteur - auteur du commentaire
+     * @param  mixed $jouet - jouet associé au commentaire
+     * @return void
+     */
     function __construct(int $id, string $message, string $date, User $auteur, int $jouet){
       $this->jouet = $jouet;
       $this->auteur = $auteur;
@@ -20,6 +32,7 @@ use App\Entity\User;
       $this->id = $id;
     }
 
+    
     public function getId(){
       return $this->id;
     }

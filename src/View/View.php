@@ -10,11 +10,23 @@ class View{
     protected $title;
     protected $content;
 
-
+    /**
+     * Constructeur
+     *
+     * @param  mixed $router - routeur à utiliser pour les liens CSS et les liens vers les routes
+     * @return void
+     */
     public function __construct(Router $router){
         $this->router = $router;
     }
 
+        
+    /**
+     * Méthode permettant de rendre la vue
+     *
+     * @param  mixed $title - titre optionnel de la vue
+     * @return void
+     */
     public function render(string $title = null){
         if($title != null){
             $this->title = AppInterface::WEB_NAME." - ".$title;
@@ -23,6 +35,14 @@ class View{
         require_once("render.php");
     }
 
+        
+    /**
+     * Affiche un message d'erreur
+     *
+     * @param  mixed $message - contenu du message d'erreur
+     * @param  mixed $logo - logo optionnel
+     * @return void
+     */
     public function showErrorPage(string $message, string $logo=null){
         if($logo != null){
             $this->content =
@@ -36,6 +56,13 @@ class View{
         $this->render("Erreur");
     }
 
+        
+    /**
+     * Construit une alerte de succès
+     *
+     * @param  mixed $message - Message contenu dans l'alerte
+     * @return void
+     */
     public function makeSuccessAlert(string $message){
         if(isset($_SESSION["successAdd"]) && $_SESSION["successAdd"] == 1){
             unset($_SESSION["successAdd"]);
@@ -45,6 +72,12 @@ class View{
         }
     }
 
+        
+    /**
+     * Afficher la page principale
+     *
+     * @return void
+     */
     public function makeHomePage(){
         if(isset($_SESSION['user'])){
             $this->content .= "<div class='gallery-menu'>
@@ -87,7 +120,12 @@ class View{
             $this->render("Accueil");
         }
     }
-
+    
+    /**
+     * Afficher la page "a propos"
+     *
+     * @return void
+     */
     public function makeAboutPage(){
         $this->content = '
         <div id="aboutPage">

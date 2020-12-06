@@ -7,10 +7,23 @@ use App\Router;
 
 class SecurityView extends View{
 
+    /**
+     * Constructeur
+     *
+     * @param  mixed $router - routeur à utiliser pour les liens CSS et les liens vers les routes
+     * @return void
+     */
     public function __construct(Router $router){
         parent::__construct($router);
     }
 
+    
+    /**
+     * Affiche la page d'inscription
+     *
+     * @param  mixed $builder - builder optionnel permettant d'afficher les éventuelles erreurs
+     * @return void
+     */
     public function showInscriptionPage(UserBuilder $builder = null){
         if($builder != null){
             $this->content = $this->makeInscriptionForm($builder);
@@ -21,7 +34,13 @@ class SecurityView extends View{
         }
         
     }
-
+    
+    /**
+     * Affiche la page de connexion à l'utilisateur
+     *
+     * @param  mixed $error - Erreur optionnelle à afficher
+     * @return void
+     */
     public function showConnectionPage(string $error = null){
         if($error != null){
             $this->content = '<div class="dangerAlert">'.$error.'</div>';
@@ -39,7 +58,12 @@ class SecurityView extends View{
         $this->render("Connexion");
     }
 
-
+    
+    /**
+     * Affiche la page de déconnexion
+     *
+     * @return void
+     */
     public function showDeconnectionPage(){
         $this->content = '<div id="formDeconnexion" class="card">
                             <h1 class="decoratedTitle">Déconnexion</h1>
@@ -48,7 +72,13 @@ class SecurityView extends View{
         $this->content .= "</div>";
         $this->render("Deconnexion");
     }
-
+    
+    /**
+     * Construit le formulaire d'inscription
+     *
+     * @param  mixed $builder - builder optionnel pour retourner les valeurs invalides à l'utilisateur
+     * @return void
+     */
     public function makeInscriptionForm(UserBuilder $builder = null){
         if($builder != null){
             $dataForm = $builder->getData();
@@ -132,7 +162,12 @@ class SecurityView extends View{
         }
 
     }
-
+    
+    /**
+     * Construit le formulaire de connexion
+     *
+     * @return void
+     */
     public function makeConnectionForm(){
         return '
             <form action="connexion" method="post">
@@ -151,7 +186,12 @@ class SecurityView extends View{
             </form>
         ';          
     }
-
+    
+    /**
+     * Construit le formulaire de déconnexion
+     *
+     * @return void
+     */
     public function makeDeconnectionForm(){
         return '
             <form action="deconnexion" method="post">

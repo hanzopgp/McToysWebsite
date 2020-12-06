@@ -12,6 +12,13 @@ use App\Tool\Interfaces\AppInterface;
 
 class SecurityController extends MainController{
 
+    /**
+     * __construct
+     *
+     * @param  mixed $router - router utile à la vue
+     * @param  mixed $view - Vue du controleur
+     * @return void
+     */
     public function __construct(Router $router, View $view = null){
         if($view !=null){
             parent::__construct($router, $view);
@@ -20,9 +27,12 @@ class SecurityController extends MainController{
         }
     }
 
+    
     /**
      * Connecte un utilisateur et le redirige vers l'accueil ou affiche un message d'erreur
      * si il s'est trompé dans ses identifiants
+     *
+     * @return void
      */
     public function makeConnectionPage(){
         if(isset($_SESSION['user'])){
@@ -51,8 +61,11 @@ class SecurityController extends MainController{
         }
     }
 
+    
     /**
      * Déconnecte l'utilisateur
+     *
+     * @return void
      */
     public function deconnectUser(){
         unset($_SESSION['user']);
@@ -60,9 +73,13 @@ class SecurityController extends MainController{
         $this->view->showConnectionPage();
     }
 
+    
     /**
      * Inscrit un utilisateur et le redirige vers l'inscription avec un message de validation
      * ou le renvoie sur la page d'inscription avec ses différentes erreurs
+     *
+     * @param  mixed $data - Data envoyé par le formulaire
+     * @return void
      */
     public function makeInscriptionPage(array $data = null){
         if($data != null){

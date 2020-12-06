@@ -2,20 +2,31 @@
 
 namespace App\Storage;
 
-use App\Entity\Commentaire;
 use PDO;
+use App\Entity\Entity;
+use App\Entity\Commentaire;
 use App\Storage\MainStorage;
 use App\Storage\UserStorage;
 use App\Storage\StorageInterface;
 
 class CommentaireStorage extends MainStorage implements StorageInterface{
     
+        
+    /**
+     * Constructeur
+     *
+     * @return void
+     */
     public function __construct(){
         parent::__construct();
     }
 
+    
     /**
      * Avoir un commentaire en fonction de son id
+     *
+     * @param  mixed $id - id du commentaire à récupérer
+     * @return void
      */
     public function getById(int $id){
         $stmt = $this->getDatabase()->prepare("SELECT * FROM commentaire WHERE id = ?");
@@ -30,29 +41,35 @@ class CommentaireStorage extends MainStorage implements StorageInterface{
     public function fetchAll(){
     }
 
+    
     /**
      * Ajouter un commentaire à la base de données
+     *
+     * @param  mixed $commentaire - Commentaire à ajouter
+     * @return void
      */
-    public function flush($commentaire){
-        if($commentaire instanceof Commentaire){
-            $stmt = $this->getDatabase()->prepare("INSERT INTO commentaire (id, message, date, auteur, jouet) VALUES (null, ?, ?, ?, ?)");
-            $stmt->bindParam(1, $message);
-            $stmt->bindParam(2, $date);
-            $stmt->bindParam(3, $auteur);
-            $stmt->bindParam(4, $jouet);
-            $message = $commentaire->getMessage();
-            $date = $commentaire->getDate();
-            $auteur = $commentaire->getAuteur()->getId();
-            $jouet = $commentaire->getJouet();
-            $stmt->execute();
-        }
+    public function flush(Entity $commentaire){
+        $message = $commentaire->getMessage();
+        $date = $commentaire->getDate();
+        $auteur = $commentaire->getAuteur()->getId();
+        $jouet = $commentaire->getJouet();
+        $stmt = $this->getDatabase()->prepare("INSERT INTO commentaire (id, message, date, auteur, jouet) VALUES (null, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $message);
+        $stmt->bindParam(2, $date);
+        $stmt->bindParam(3, $auteur);
+        $stmt->bindParam(4, $jouet);
+        $stmt->execute();
     }
 
-    public function update($commentaire, $data){
+    public function update(Entity $commentaire, array $data){
     }
 
+    
     /**
      * Avoir tout les commentaires associés à un jouet
+     *
+     * @param  mixed $jouetId - id du jouet à cibler
+     * @return void
      */
     public function getAllCommentairesByJouet(int $jouetId){
         $jouetStorage = new JouetStorage();
@@ -70,6 +87,12 @@ class CommentaireStorage extends MainStorage implements StorageInterface{
     }
 
     public function delete($id){
+    }
+
+    public function deleteByIdJouet(int $idJouet){
+        $stmt = $this->getDatabase()->prepare("DELETE FROM commentaire WHERE jouet = ?");
+        $stmt->bindParam(1, $idJouet);
+        $stmt->execute();
     }
     
     public function generate($data){

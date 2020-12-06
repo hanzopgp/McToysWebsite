@@ -6,10 +6,16 @@ use \PDO;
 use \Exception;
 use App\Tool\Interfaces\AppInterface;
 
-class MainStorage{
+abstract class MainStorage{
 
     protected $database;
 
+        
+    /**
+     * Constructeur
+     *
+     * @return void
+     */
     public function __construct(){
         $json = json_decode(file_get_contents(AppInterface::DB_LINK), true);
         try
@@ -30,8 +36,12 @@ class MainStorage{
         return $this->database;
     }
 
+    
     /**
      * Génère un id pour une table
+     *
+     * @param  mixed $table - nom de la table ciblée
+     * @return void
      */
     public function generateId(string $table){
         $request = "SELECT MAX(id) FROM $table";

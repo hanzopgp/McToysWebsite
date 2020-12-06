@@ -9,6 +9,13 @@ use App\Storage\JouetStorage;
 
 class SearchController extends MainController{
 
+    /**
+     * __construct
+     *
+     * @param  mixed $router - router utile à la vue
+     * @param  mixed $view - Vue du controleur
+     * @return void
+     */
     public function __construct(Router $router, View $view = null){
         if($view !=null){
             parent::__construct($router, $view);
@@ -17,8 +24,12 @@ class SearchController extends MainController{
         }
     }
     
+    
     /**
      * Recherche les jouets correspondant à la demande et redirige l'utilisateur vers le résultat
+     *
+     * @param  mixed $data - Data retournée par le formulaire
+     * @return void
      */
     public function searchJouet(array $data){
         $storage = new JouetStorage();
@@ -26,8 +37,11 @@ class SearchController extends MainController{
         header("Location: jouet/recherche");
     }
 
+    
     /**
      * Affiche la liste des résultats envoyés en session
+     *
+     * @return void
      */
     public function makeSearchResultPage(){
         if(isset($_SESSION["feedback"])){

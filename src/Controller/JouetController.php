@@ -46,7 +46,7 @@ class JouetController extends MainController{
                     if($builder->createJouet($id, $imageName) instanceof Jouet){
                         $storage->flush($builder->createJouet($id, $imageName));
                         $_SESSION["successAdd"] = 1;
-                        header("Location: ../jouet/detail/".$id);
+                        header("Location: ../jouet/detail/".$storage->generateId("jouet"));
                     }else{
                         $this->view->showNouveauPage($builder);
                     }
@@ -104,16 +104,33 @@ class JouetController extends MainController{
      */
     public function modifierJouet(JouetBuilder $jouetbuild){
         $id = $jouetbuild->getData()["id_jouet"];
-        $jouet = $jouetbuild->createJouet($id);
+        $storage = new JouetStorage();
+        $imageName = "";
+        if(isset($_FILES["jouet_image"]) && $_FILES["jouet_image"]["tmp_name"] != ""){
+            //on gère l'image envoyé
+            $image = $_FILES["jouet_image"]["tmp_name"];
+            $imageName = "";
+            if(explode("/", $_FILES["jouet_image"]["type"])[0] != "image"){
+                $jouetbuild->addError("Vous ne pouvez transférer que des images JPG, JPEG ou PNG ! <br>");
+            }else{
+                $imageName = uniqid().".".explode("/", $_FILES["jouet_image"]["type"])[1];
+                move_uploaded_file($image, "../upload/".$imageName);
+                //on supprime l'ancienne image du jouet
+                unlink("../upload/".$storage->getById($id)->getImage());
+            }
+        }else{
+            $jouetbuild->addError("Vous devez ajouter une image à votre jouet !");
+        }
+        $jouet = $jouetbuild->createJouet($id, $imageName);
         if($jouet instanceof Jouet){
-            $storage = new JouetStorage();
             $jouet = $storage->getById($id);
+            $jouet->setImage($imageName);
             $storage->update($jouet, $jouetbuild->getData());
             header("Location: ../../jouet/detail/".$jouet->getId());
         }
         else{
-            $this->view->showModifierPage((new JouetStorage())->getById($id), $jouetbuild);       
-         }  
+            $this->view->showModifierPage($storage->getById($id), $jouetbuild);       
+        }  
     }
 
     /**
@@ -125,8 +142,10 @@ class JouetController extends MainController{
         if($storage->checkIfExist($id)){
             if($_SESSION["user"]->getId() == (new JouetStorage())->getById($id)->getUser()->getId()){
                 $storage = new JouetStorage();
+                $commentaireStorage = new CommentaireStorage();
+                $commentaireStorage->deleteByIdJouet($id);
                 $storage->delete($id);
-                header("Location: ../../");
+                header("Location: ../../jouet/liste");
             }
             else{
                 $this->view->showErrorPage(AppInterface::ERR_NOT_YOUR_TOY);
@@ -150,7 +169,7 @@ class JouetController extends MainController{
      */
     public function makeOwnListPage(){
         $storage = new JouetStorage();
-        $this->view->showListePage($storage->fetchSearch($_SESSION["user"]->getId()), "Liste de tout vos jouets :");
+        $this->view->showListePage($storage->getAllJouetsByUser($_SESSION["user"]->getId()), "Liste de tout vos jouets :");
     }
 
     /**
