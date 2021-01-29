@@ -16,7 +16,7 @@
 
 ## Présentation :
 
-Site internet avec système de connexion utilisateurs, permettant d'ajouter et de consulter des jouets dans une base de données, laisser des commentaires... Ce projet nous a permit de nous familiariser avec le language PHP ainsi que la communication entre un site internet et une base de donnée.
+Site internet avec système de connexion utilisateurs, permettant d'ajouter et de consulter des jouets dans une base de données, laisser des commentaires... Ce projet nous a permit de nous familiariser avec le language PHP ainsi que la communication entre un site internet et une base de donnée.<br>
 L3 Informatique, note : 18/20.
 
 ## Utilisation :
