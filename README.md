@@ -2,9 +2,10 @@
 
 ## Table des matières
 
-1. [Auteurs](#projet-conçu-par-)
-2. [Utilisation](#utilisation-)
-3. [Liens utiles](#liens-utiles-)
+1. [Présentation](#presentation-)
+2. [Auteurs](#projet-conçu-par-)
+3. [Utilisation](#utilisation-)
+4. [Liens utiles](#liens-utiles-)
 
 ## Projet conçu par : 
 
@@ -12,6 +13,11 @@
 - Leconte Thomas : 22008087
 - Robert Adrien : 21701370
 - Lepage Dylan : 21804570
+
+## Présentation :
+
+Site internet avec système de connexion utilisateurs, permettant d'ajouter et de consulter des jouets dans une base de données, laisser des commentaires... Ce projet nous a permit de nous familiariser avec le language PHP ainsi que la communication entre un site internet et une base de donnée.
+L3 Informatique, note : 18/20.
 
 ## Utilisation :
 >Après avoir glissé le projet dans le serveur web, il va falloir s\'assurer que celui-ci accepte la lecture de fichiers  .htaccess 
